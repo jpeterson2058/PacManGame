@@ -42,15 +42,22 @@ public class PacManTest
             System.out.println("");
         }
         
-        class PacManMove 
+     class PacManMove 
         {
-        	public void main(String[] args)
-        	{
-        		
-        	}
-        	char startPos = '>';
+        	private char left;
+        	private char up;
+        	private char right;
+        	private char down;
         	
+        		
+        	PacManMove()
+        	{
+        		this.left = '>';
+        		this.up = 'V';
+        		this.right = '<';
+        		this.down = '^';
+        	}
+        	}
         }
-        
     }
 }
