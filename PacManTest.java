@@ -42,7 +42,7 @@ public class PacManTest
             System.out.println("");
         }
         
-     class PacManMove 
+        class PacManMove 
         {
         	private char left;
         	private char up;
@@ -56,7 +56,6 @@ public class PacManTest
         		this.up = 'V';
         		this.right = '<';
         		this.down = '^';
-        	}
         	}
         }
     }
