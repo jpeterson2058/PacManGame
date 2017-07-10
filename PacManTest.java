@@ -35,7 +35,7 @@ public class PacManTest
 			break;
 			case 2:game.pacMan.direction = game.pacMan.right;
 			break;
-			case 3:game.pacMan.direction = game.pacMan.down;
+			case 3:game.pacMan.direction = game.pacMan.direction;
 			break;
 			}
 			
