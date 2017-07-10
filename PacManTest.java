@@ -1,63 +1,117 @@
 import java.util.*;
+
 public class PacManTest
 {
-	public static void main(String[] args)
+    PacManMove pacMan;
+    Board board;
+
+    PacManTest(int row, int column) {
+        pacMan = new PacManMove();
+        board = new Board(row, column);
+    }
+
+    public static void main(String[] args)
     {
         char O;
         char V;
-        
-        
         
         Scanner input = new Scanner(System.in);
 		System.out.println("Input total rows:");
 		int row = input.nextInt();
 		System.out.println("Input total columns:");
 		int column = input.nextInt();
-		System.out.println("Welcome to a bad version of PacMan!");
+		
+        PacManTest game = new PacManTest(row, column);
+
+        int command = 0;
+        while (command != 4)
+        {
+            switch (command)
+            {
+                case 0: instructions();
+                case 1: game.pacMan.direction = game.pacMan.left;
+                break;
+                case 2: game.pacMan.direction = game.pacMan.right;
+                break;
+         
+            }
+            game.board.drawBoard(game.pacMan.posX, game.pacMan.posY, game.pacMan.direction);
+
+            command = input.nextInt();
+        }
+    }
+
+    public static void instructions() 
+    {
+        System.out.println("Welcome to a bad version of PacMan!");
 		System.out.println("Enter the number of the comman desired.");
 		System.out.println("Display Commands   	<0>:");
 		System.out.println("Turn Left         	<1>:");
-		System.out.println("Turn right              <2>:");
+		System.out.println("Turn right              <3>:");
 		System.out.println("Move                    <3>:");
 		System.out.println("Exit                    <4>:");
-		
-        char board[][] = new char[row][column];
+    }
 
-        for(int x = 0; x < board.length; x++)
-        {
-            for(int i = 0; i < board.length; i++)
+    class Board
+    {
+        public char board[][];
+        Board(int row, int column) {
+            board = new char[row][column];
+
+            for(int x = 0; x < board.length; x++)
             {
-                double random = Math.random();
-                if(random >.01 && random <=.15)
+                for(int i = 0; i < board.length; i++)
                 {
-                    board[x][i] = 'O';
+                    double random = Math.random();
+                    if(random >.01 && random <=.15)
+                    {
+                        board[x][i] = 'O';
+                    }
+                    
+                    else {
+                        board[x][i] = '.';
+                    }
                 }
-                
-                else {
-                    board[x][i] = '.';
-                }
-               
-                System.out.print(board[x][i] + " ");
             }
-            System.out.println("");
         }
-        
-     class PacManMove 
+
+        public void drawBoard(int posX, int posY, char direction)
         {
-        	private char left;
-        	private char up;
-        	private char right;
-        	private char down;
-        	
-        		
-        	PacManMove()
-        	{
-        		this.left = '>';
-        		this.up = 'V';
-        		this.right = '<';
-        		this.down = '^';
-        	}
-        	}
+            //PacMan
+            board[posX][posY] = direction;
+
+            for(int y = 0; y < board.length; y++)
+            {
+                for(int x = 0; x < board.length; x++)
+                {
+                    System.out.print(board[y][x] + " ");
+                }
+                System.out.println("");
+            }
+        }
+    }
+
+    class PacManMove 
+    {
+        private char left;
+        private char up;
+        private char right;
+        private char down;
+
+        private int posX;
+        private int posY;
+        private char direction;
+            
+        PacManMove()
+        {
+            this.left = '>';
+            this.up = 'V';
+            this.right = '<';
+            this.down = '^';
+
+            this.posX = 0;
+            this.posY = 0;
+            this.direction = this.right;
         }
     }
 }
